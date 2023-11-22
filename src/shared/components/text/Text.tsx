@@ -9,16 +9,59 @@ interface TextProps extends TextPropsNative {
 }
 
 const Text = ({ color, type, ...props }: TextProps) => {
-    const handleFontSize = useMemo(() => {
+    const FontSize = useMemo(() => {
         switch (type) {
-            case textTypes.TITLE:
-                return '32px'
+            case textTypes.TITLE_BOLD:
+            case textTypes.TITLE_REGULAR:
+            case textTypes.TITLE_LIGHT:
+                return '24px'
+            case textTypes.SUB_TITLE_BOLD:
+            case textTypes.SUB_TITLE_REGULAR:
+            case textTypes.SUB_TITLE_LIGHT:
+                return '20px'
+            case textTypes.BUTTOM_BOLD:
+            case textTypes.BUTTOM_REGULAR:
+            case textTypes.BUTTOM_LIGHT:
+                return '18px'
+            case textTypes.PARAGRAPH_BOLD:
+            case textTypes.PARAGRAPH_REGULAR:
+            case textTypes.PARAGRAPH_LIGHT:
+                return '14px'
+            case textTypes.PARAGRAPH_SMALL_BOLD:
+            case textTypes.PARAGRAPH_SMALL_REGULAR:
+            case textTypes.PARAGRAPH_SMALL_LIGHT:
+                return '10px'
             default:
-                return '16px'
+                return '14px'
         }
     }, [type])
 
-    return <ContainerText fontSize={handleFontSize} color={color} {...props} />
+    const FontFamily = useMemo(() => {
+        switch (type) {
+            case textTypes.TITLE_BOLD:
+            case textTypes.SUB_TITLE_BOLD:
+            case textTypes.PARAGRAPH_BOLD:
+            case textTypes.BUTTOM_BOLD:
+            case textTypes.PARAGRAPH_SMALL_BOLD:
+                return 'Poppins-Bold'
+            case textTypes.TITLE_REGULAR:
+            case textTypes.SUB_TITLE_REGULAR:
+            case textTypes.PARAGRAPH_REGULAR:
+            case textTypes.BUTTOM_REGULAR:
+            case textTypes.PARAGRAPH_SMALL_REGULAR:
+                return 'Poppins-Regular'
+            case textTypes.TITLE_LIGHT:
+            case textTypes.SUB_TITLE_LIGHT:
+            case textTypes.PARAGRAPH_LIGHT:
+            case textTypes.BUTTOM_LIGHT:
+            case textTypes.PARAGRAPH_SMALL_LIGHT:
+                return 'Poppins-Light'
+            default:
+                return 'Poppins-Regular'
+        }
+    }, [type])
+
+    return <ContainerText fontFamily={FontFamily} fontSize={FontSize} color={color} {...props} />
 };
 
 export default Text;
